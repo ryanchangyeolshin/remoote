@@ -1,14 +1,18 @@
-import React from 'react'
-import NavigationBar from './Navigation/NavigationBar'
-import 'semantic-ui-css/semantic.min.css'
-import './App.css'
+import React from 'react';
+import { Container } from 'semantic-ui-react';
+import NavigationBar from './Navigation/NavigationBar';
+import JobPosting from './Jobs/JobPosting';
+import 'semantic-ui-css/semantic.min.css';
 
 const App: React.FC = () => {
   return (
     <div className="App">
-        <NavigationBar />
+      <NavigationBar />
+      <Container>
+        <JobPosting />
+      </Container>
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
