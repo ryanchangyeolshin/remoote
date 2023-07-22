@@ -29,5 +29,9 @@ module.exports = {
         "react"
     ],
     "rules": {
+        "quotes": ["error", "single"],
+        "semi": ["error", "always"],
+        "@typescript-eslint/semi": "off",
+        "indent": ["error", 2],
     }
 }
