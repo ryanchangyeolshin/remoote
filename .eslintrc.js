@@ -32,6 +32,8 @@ module.exports = {
         "quotes": ["error", "single"],
         "semi": ["error", "always"],
         "@typescript-eslint/semi": "off",
+        "@typescript-eslint/explicit-function-return-type" : "off",
+        "@typescript-eslint/restrict-template-expressions": "off",
         "indent": ["error", 2],
     }
 }

@@ -1,7 +1,3 @@
-const capitalizeFirstLetter = (str: string): string => {
-  return str.charAt(0).toUpperCase() + str.slice(1);
-};
-
 const provideJobPostingTime = (date: string): string => {
   const currentDate = new Date();
   const postDate = new Date(date);
@@ -28,7 +24,23 @@ const provideJobPostingTime = (date: string): string => {
   }
 };
 
+const provideSalary = (min: number | null, max: number | null): string | null => {
+  if (min === null && max === null) {
+    return null;
+  }
+
+  if (min !== null && max === null) {
+    return `Salary: ${min}`;
+  }
+
+  if (min === null && max !== null) {
+    return `Salary: ${max}`;
+  }
+
+  return `Salary: ${min} - ${max}`;
+};
+
 export {
-  capitalizeFirstLetter,
-  provideJobPostingTime
+  provideJobPostingTime,
+  provideSalary
 };
