@@ -1,6 +1,6 @@
 import React from 'react';
 import { Segment, Item, Label } from 'semantic-ui-react';
-import { provideJobPostingTime, provideSalary } from '../utils/dataManipulation';
+import { provideJobPostingTime, provideSalary, provideLocation } from '../utils/dataManipulation';
 import { type JobPostingType } from '../Types/Jobs/types';
 
 interface JobPostingProps {
@@ -9,6 +9,8 @@ interface JobPostingProps {
 
 const JobPosting: React.FunctionComponent<JobPostingProps> = (props) => {
   const { jobPosting } = props;
+  const salary: string | null = provideSalary(jobPosting.job_min_salary, jobPosting.job_max_salary, jobPosting.job_salary_currency);
+  const location: string | null = provideLocation(jobPosting.job_city, jobPosting.job_state, jobPosting.job_country);
 
   return (
     <Segment>
@@ -23,9 +25,9 @@ const JobPosting: React.FunctionComponent<JobPostingProps> = (props) => {
             <Item.Description>{ }</Item.Description>
             <Item.Extra>
               <Label>Job Type: {jobPosting.job_employment_type}</Label>
-              <Label>Location: {`${jobPosting.job_city}, ${jobPosting.job_state} ${jobPosting.job_country}`}</Label>
+              {(location != null) && (<Label>{location}</Label>)}
               <Label>{provideJobPostingTime(jobPosting.job_posted_at_datetime_utc)}</Label>
-              <Label>{provideSalary(jobPosting.job_min_salary, jobPosting.job_max_salary)}</Label>
+              {(salary != null) && (<Label>{salary}</Label>)}
             </Item.Extra>
           </Item.Content>
         </Item>
