@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { type JobPostingType } from '../Types/Jobs/types';
 import JobPosting from './JobPosting';
+import './JobPosting.scss';
 
 const JobPostings: React.FunctionComponent = () => {
   const [jobPostings, setJobPostings] = useState<JobPostingType[]>([]);
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
+  const nodeRef = useRef(null);
 
   useEffect(() => {
     if (process.env.REACT_APP_API_HOST != null) {
@@ -33,13 +35,13 @@ const JobPostings: React.FunctionComponent = () => {
   return (
     <TransitionGroup>
       {isLoaded && (
-        <CSSTransition classNames="fade" timeout={300}>
-          <>
-            {jobPostings.map((jobPosting: JobPostingType) => (
-              <JobPosting key={jobPosting._id} jobPosting={jobPosting} />
-            ))}
-          </>
-        </CSSTransition>
+        <>
+          {jobPostings.map((jobPosting: JobPostingType) => (
+            <CSSTransition key={jobPosting._id} nodeRef={nodeRef} classNames="fade" timeout={300}>
+              <JobPosting jobPosting={jobPosting} />
+            </CSSTransition>
+          ))}
+        </>
       )}
     </TransitionGroup>
   );
