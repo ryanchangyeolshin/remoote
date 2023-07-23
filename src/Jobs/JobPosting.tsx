@@ -1,6 +1,6 @@
 import React from 'react';
 import { Segment, Item, Label } from 'semantic-ui-react';
-import { capitalizeFirstLetter } from '../utils/dataManipulation';
+import { capitalizeFirstLetter, provideJobPostingTime } from '../utils/dataManipulation';
 import { type JobPostingType } from '../Types/Jobs/types';
 
 interface JobPostingProps {
@@ -23,6 +23,7 @@ const JobPosting: React.FunctionComponent<JobPostingProps> = (props) => {
             <Item.Description>{ }</Item.Description>
             <Item.Extra>
               <Label>Location: {capitalizeFirstLetter(jobPosting.location)}</Label>
+              <Label>{provideJobPostingTime(jobPosting.date)}</Label>
             </Item.Extra>
           </Item.Content>
         </Item>
