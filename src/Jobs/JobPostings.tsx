@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Pagination, Dimmer, Loader } from 'semantic-ui-react';
+import { Pagination, Dimmer, Loader, Container } from 'semantic-ui-react';
 import axios from 'axios';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { type JobPostingType } from '../Types/Jobs/types';
@@ -37,7 +37,6 @@ const JobPostings: React.FunctionComponent = () => {
 
       axios.request(options)
         .then(({ data }) => {
-          console.log(data);
           setJobPostings(data.data);
           setIsLoaded(true);
         })
@@ -46,28 +45,29 @@ const JobPostings: React.FunctionComponent = () => {
   }, [activePage]);
 
   return (
-    <TransitionGroup>
-      {isLoaded
-        ? (
-          <>
-            {jobPostings.map((jobPosting: JobPostingType) => (
-              <CSSTransition key={jobPosting.job_id} nodeRef={nodeRef} classNames="fade" timeout={300}>
-                <JobPosting jobPosting={jobPosting} />
-              </CSSTransition>
-            ))}
-
-            <Pagination
-              activePage={activePage}
-              onPageChange={handlePaginationChange}
-              totalPages={100}
-            />
-          </>)
-        : (
-          <Dimmer active inverted>
-            <Loader content='Loading' />
-          </Dimmer>)
-      }
-    </TransitionGroup>
+    <Container className="job-postings-container">
+      <TransitionGroup>
+        {isLoaded
+          ? (
+            <>
+              {jobPostings.map((jobPosting: JobPostingType) => (
+                <CSSTransition key={jobPosting.job_id} nodeRef={nodeRef} classNames="fade" timeout={300}>
+                  <JobPosting jobPosting={jobPosting} />
+                </CSSTransition>
+              ))}
+              <Pagination
+                activePage={activePage}
+                onPageChange={handlePaginationChange}
+                totalPages={100}
+              />
+            </>)
+          : (
+            <Dimmer active inverted>
+              <Loader content='Loading' />
+            </Dimmer>)
+        }
+      </TransitionGroup>
+    </Container>
   );
 };
 
