@@ -1,5 +1,15 @@
 .job-postings-container {
     margin-bottom: 30px;
+
+    .job-posting {
+        cursor: pointer;
+        -webkit-transition: background-color 2s; /* For Safari */
+        transition: background-color 2s; /* For modern browsers */
+    
+        &:hover {
+            background-color: darkgrey;
+        }
+    }
 }
 
 .fade-enter {

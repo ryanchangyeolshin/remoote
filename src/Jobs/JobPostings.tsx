@@ -1,7 +1,7 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Pagination, Dimmer, Loader, Container } from 'semantic-ui-react';
 import axios from 'axios';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import JobDetailModal from './JobDetailModal';
 import { type JobPostingType } from '../Types/Jobs/types';
 import JobPosting from './JobPosting';
 import './JobPosting.scss';
@@ -10,7 +10,7 @@ const JobPostings: React.FunctionComponent = () => {
   const [jobPostings, setJobPostings] = useState<JobPostingType[]>([]);
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const [activePage, setActivePage] = useState<number>(1);
-  const nodeRef = useRef(null);
+  const [selectedJobPosting, setSelectedJobPosting] = useState<JobPostingType | null>(null);
 
   const handlePaginationChange = (_e: any, { activePage }: any) => {
     setIsLoaded(false);
@@ -46,27 +46,26 @@ const JobPostings: React.FunctionComponent = () => {
 
   return (
     <Container className="job-postings-container">
-      <TransitionGroup>
-        {isLoaded
-          ? (
-            <>
-              {jobPostings.map((jobPosting: JobPostingType) => (
-                <CSSTransition key={jobPosting.job_id} nodeRef={nodeRef} classNames="fade" timeout={300}>
-                  <JobPosting jobPosting={jobPosting} />
-                </CSSTransition>
-              ))}
-              <Pagination
-                activePage={activePage}
-                onPageChange={handlePaginationChange}
-                totalPages={100}
-              />
-            </>)
-          : (
-            <Dimmer active inverted>
-              <Loader content='Loading' />
-            </Dimmer>)
-        }
-      </TransitionGroup>
+      {isLoaded
+        ? (
+          <>
+            {jobPostings.map((jobPosting: JobPostingType) => (
+              <JobPosting key={jobPosting.job_id} jobPosting={jobPosting} setSelectedJobPosting={setSelectedJobPosting} />
+            ))}
+            <Pagination
+              activePage={activePage}
+              onPageChange={handlePaginationChange}
+              totalPages={100}
+            />
+          </>)
+        : (
+          <Dimmer active inverted>
+            <Loader content='Loading' />
+          </Dimmer>)
+      }
+      {selectedJobPosting !== null && (
+        <JobDetailModal jobPosting={selectedJobPosting} setSelectedJobPosting={setSelectedJobPosting} />)
+      }
     </Container>
   );
 };
