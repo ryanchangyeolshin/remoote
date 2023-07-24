@@ -17,7 +17,7 @@ const JobPosting: React.FunctionComponent<JobPostingProps> = (props) => {
     <Segment className='job-posting' onClick={() => { setSelectedJobPosting(jobPosting); }}>
       <Item.Group divided>
         <Item>
-          <Item.Image size='tiny' src={jobPosting.employer_logo} />
+          <Item.Image size='tiny' src={jobPosting.employer_logo} centered />
           <Item.Content>
             <Item.Header>{jobPosting.job_title}</Item.Header>
             <Item.Meta>
