@@ -12,6 +12,25 @@
     }
 }
 
+
+.modals {
+    .ui.modal {
+        .header.job-posting-detail-header {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            .job-posting-detail-position-information {
+                margin-left: 10px;
+            }
+        }
+
+        .job-posting-detail-location-and-salary {
+            margin-bottom: 20px;
+        }
+    }
+}
+
 .fade-enter {
     opacity: 0;
 }
