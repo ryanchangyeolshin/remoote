@@ -31,8 +31,8 @@ const JobDetailModal: React.FC<JobDetailModalProps> = (props) => {
       </Modal.Header>
       <Modal.Content>
         <div className='job-posting-detail-location-and-salary'>
-          <Label>{location}</Label>
-          <Label>{salary}</Label>
+          {(location != null) && (<Label>{location}</Label>)}
+          {(salary != null) && (<Label>{salary}</Label>)}
         </div>
         <Modal.Description>
           <Header>Job Description</Header>
