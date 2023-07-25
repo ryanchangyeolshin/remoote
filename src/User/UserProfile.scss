@@ -1,0 +1,54 @@
+.user-profile-container {
+    display: flex;
+    align-items: top;
+
+    .user-profile-information-container {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+    
+        .user-profile-information {
+            /* Set the initial width to 100% */
+            position: relative;
+    
+            /* Apply the animation to the width change */
+            &.collapsed {
+                animation-fill-mode: forwards;
+            }
+        }
+    
+        &.collapsed {
+            width: 50%;
+            
+            .user-profile-collapse {
+                transform: rotate(180deg);
+                margin-right: 10px;
+            }
+        }
+    
+        .user-profile-collapse {
+            position: absolute;
+            right: 10px;
+            cursor: pointer;
+            transform: rotate(0);
+            transition: transform 0.3s ease-in-out;
+        }
+    }
+    
+    
+    .user-profile-saved-jobs-container {
+        display: none;
+        
+        &.collapsed {
+            display: flex;
+            justify-content: center;
+            width: 50%;
+            height: 100vh;
+            margin-left: 20px;
+            margin-top: 0;
+        }
+    }
+}
+

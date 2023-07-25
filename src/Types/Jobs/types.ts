@@ -21,3 +21,11 @@ export interface JobPostingType {
   job_max_salary: number | null
   job_salary_currency: string
 };
+
+export interface UserType {
+  name: string
+  location: string
+  username: string
+  telephone: string
+  savedJobs: number
+};

@@ -1,4 +1,5 @@
-@use './Jobs/JobPosting.scss';
+@import './Jobs/JobPosting.scss';
+@import './User/UserProfile.scss';
 
 .App {
   text-align: center;
