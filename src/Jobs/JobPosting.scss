@@ -9,6 +9,16 @@
         &:hover {
             background-color: darkgrey;
         }
+
+        .ui.items {
+            .item {
+                .ui.image {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                }
+            }
+        }
     }
 }
 
