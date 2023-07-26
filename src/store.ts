@@ -1,10 +1,10 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { combineReducers } from 'redux';
 import jobReducer from './reducers/jobReducer';
 
-const store = configureStore({
-  reducer: {
-    jobs: jobReducer
-  }
+const rootReducer = combineReducers({
+  jobs: jobReducer
 });
 
-export default store;
+export type RootState = ReturnType<typeof rootReducer>;
+
+export default rootReducer;

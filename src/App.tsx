@@ -2,11 +2,16 @@ import React from 'react';
 import { Container } from 'semantic-ui-react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import store from './store';
+import { configureStore } from '@reduxjs/toolkit';
+import rootReducer from './store';
 import NavigationBar from './Navigation/NavigationBar';
 import JobPostings from './Jobs/JobPostings';
 import UserProfile from './User/UserProfile';
 import 'semantic-ui-css/semantic.min.css';
+
+const store = configureStore({
+  reducer: rootReducer
+});
 
 const App: React.FC = () => {
   return (
