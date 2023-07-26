@@ -29,3 +29,18 @@ export interface UserType {
   telephone: string
   savedJobs: number
 };
+
+export enum JobActionTypes {
+  SAVE_JOB = 'SAVE_JOB',
+}
+
+export interface SaveJobAction {
+  type: JobActionTypes.SAVE_JOB
+  payload: JobPostingType
+}
+
+export type JobAction = SaveJobAction;
+
+export interface JobState {
+  savedJobs: JobPostingType[]
+}

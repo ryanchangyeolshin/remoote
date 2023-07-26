@@ -34,6 +34,5 @@ module.exports = {
         "@typescript-eslint/semi": "off",
         "@typescript-eslint/explicit-function-return-type" : "off",
         "@typescript-eslint/restrict-template-expressions": "off",
-        "indent": ["error", 2],
     }
 }

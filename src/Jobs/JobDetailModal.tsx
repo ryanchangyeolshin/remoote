@@ -2,6 +2,7 @@ import React from 'react';
 import { Modal, Image, Header, Button, Label } from 'semantic-ui-react';
 import { type JobPostingType } from '../Types/Jobs/types';
 import { provideSalary, provideLocation } from '../utils/dataManipulation';
+import { saveJob } from '../actions/jobActions';
 
 interface JobDetailModalProps {
   jobPosting: JobPostingType
@@ -12,6 +13,11 @@ const JobDetailModal: React.FC<JobDetailModalProps> = (props) => {
   const { jobPosting, setSelectedJobPosting } = props;
   const salary: string | null = provideSalary(jobPosting.job_min_salary, jobPosting.job_max_salary, jobPosting.job_salary_currency);
   const location: string | null = provideLocation(jobPosting.job_city, jobPosting.job_state, jobPosting.job_country);
+
+  const handleSaveJob = () => {
+    saveJob(jobPosting);
+    setSelectedJobPosting(null);
+  };
 
   return (
     <Modal
@@ -63,6 +69,7 @@ const JobDetailModal: React.FC<JobDetailModalProps> = (props) => {
         <Button color='black' onClick={() => { setSelectedJobPosting(null); }}>
           Close
         </Button>
+        <Button primary onClick={handleSaveJob}>Save Job</Button>
         <Button
           content="Apply"
           positive
