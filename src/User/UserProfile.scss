@@ -38,16 +38,17 @@
     }
     
     
-    .user-profile-saved-jobs-container {
+    .ui.segment.user-profile-saved-jobs-container {
         display: none;
         
         &.collapsed {
             display: flex;
             justify-content: center;
             width: 50%;
-            height: 100vh;
+            height: 90vh;
             margin-left: 20px;
             margin-top: 0;
+            overflow-y: auto;
         }
     }
 }
