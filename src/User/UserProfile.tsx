@@ -32,7 +32,7 @@ const UserProfile: React.FC = () => {
       <UserProfileInformation user={user} isCollapsed={isCollapsed} toggleCollapse={toggleCollapse} />
       <UserProfileSavedJobs isCollapsed={isCollapsed} setSelectedJobPosting={setSelectedJobPosting} />
       {selectedJobPosting !== null && (
-        <JobDetailModal jobPosting={selectedJobPosting} setSelectedJobPosting={setSelectedJobPosting} />)
+        <JobDetailModal jobPosting={selectedJobPosting} setSelectedJobPosting={setSelectedJobPosting} saved={true} />)
       }
     </div>
   );

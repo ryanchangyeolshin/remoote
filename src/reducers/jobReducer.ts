@@ -12,6 +12,11 @@ const jobReducer: Reducer<JobState, AnyAction> = (state = initialState, action) 
         ...state,
         savedJobs: [...state.savedJobs, action.payload]
       };
+    case JobActionTypes.REMOVE_JOB:
+      return {
+        ...state,
+        savedJobs: [...state.savedJobs.filter(savedJob => savedJob.job_id !== action.payload)]
+      };
     default:
       return state;
   }
