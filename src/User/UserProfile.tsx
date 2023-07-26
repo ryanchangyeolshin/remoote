@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import UserProfileInformation from './UserProfileInformation';
 import UserProfileSavedJobs from './UserProfileSavedJobs.';
+import { type JobPostingType } from '../Types/Jobs/types';
+import JobDetailModal from '../Jobs/JobDetailModal';
 
 interface User {
   name: string
@@ -12,6 +14,7 @@ interface User {
 
 const UserProfile: React.FC = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const [selectedJobPosting, setSelectedJobPosting] = useState<JobPostingType | null>(null);
   const user: User = {
     name: 'John Doe',
     location: 'New York, NY, USA, 10001',
@@ -27,7 +30,10 @@ const UserProfile: React.FC = () => {
   return (
     <div className='user-profile-container'>
       <UserProfileInformation user={user} isCollapsed={isCollapsed} toggleCollapse={toggleCollapse} />
-      <UserProfileSavedJobs isCollapsed={isCollapsed} />
+      <UserProfileSavedJobs isCollapsed={isCollapsed} setSelectedJobPosting={setSelectedJobPosting} />
+      {selectedJobPosting !== null && (
+        <JobDetailModal jobPosting={selectedJobPosting} setSelectedJobPosting={setSelectedJobPosting} />)
+      }
     </div>
   );
 };
