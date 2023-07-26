@@ -32,11 +32,17 @@ export interface UserType {
 
 export enum JobActionTypes {
   SAVE_JOB = 'SAVE_JOB',
+  REMOVE_JOB = 'REMOVE_JOB'
 }
 
 export interface SaveJobAction {
   type: JobActionTypes.SAVE_JOB
   payload: JobPostingType
+}
+
+export interface RemoveJobAction {
+  type: JobActionTypes.REMOVE_JOB
+  payload: string
 }
 
 export type JobAction = SaveJobAction;

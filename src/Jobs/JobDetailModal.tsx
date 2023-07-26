@@ -3,16 +3,17 @@ import { useDispatch } from 'react-redux';
 import { Modal, Image, Header, Button, Label } from 'semantic-ui-react';
 import { type JobPostingType } from '../Types/Jobs/types';
 import { provideSalary, provideLocation } from '../utils/dataManipulation';
-import { saveJob } from '../actions/jobActions';
+import { removeJob, saveJob } from '../actions/jobActions';
 
 interface JobDetailModalProps {
   jobPosting: JobPostingType
   setSelectedJobPosting: (selectedJobPosting: JobPostingType | null) => void
+  saved?: boolean
 }
 
 const JobDetailModal: React.FC<JobDetailModalProps> = (props) => {
   const dispatch = useDispatch();
-  const { jobPosting, setSelectedJobPosting } = props;
+  const { jobPosting, setSelectedJobPosting, saved = false } = props;
   const salary: string | null = provideSalary(jobPosting.job_min_salary, jobPosting.job_max_salary, jobPosting.job_salary_currency);
   const location: string | null = provideLocation(jobPosting.job_city, jobPosting.job_state, jobPosting.job_country);
 
@@ -20,6 +21,11 @@ const JobDetailModal: React.FC<JobDetailModalProps> = (props) => {
     dispatch(saveJob(jobPosting));
     setSelectedJobPosting(null);
   }, [jobPosting, saveJob, setSelectedJobPosting]);
+
+  const handleRemoveJob = useCallback(() => {
+    dispatch(removeJob(jobPosting.job_id));
+    setSelectedJobPosting(null);
+  }, [jobPosting, removeJob, setSelectedJobPosting]);
 
   return (
     <Modal
@@ -71,7 +77,9 @@ const JobDetailModal: React.FC<JobDetailModalProps> = (props) => {
         <Button color='black' onClick={() => { setSelectedJobPosting(null); }}>
           Close
         </Button>
-        <Button primary onClick={handleSaveJob}>Save Job</Button>
+        {
+          saved ? (<Button negative onClick={handleRemoveJob}>Remove Job</Button>) : (<Button primary onClick={handleSaveJob}>Save Job</Button>)
+        }
         <Button
           content="Apply"
           positive

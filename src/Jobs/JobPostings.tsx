@@ -48,7 +48,6 @@ const JobPostings: React.FunctionComponent = () => {
   }, 3000);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setIsLoaded(false);
     setSearchQuery(event.target.value);
   };
 
