@@ -23,8 +23,8 @@ To run the application locally, follow these steps:
 1. Clone the repository to your local machine.
 
 ```bash
-git clone https://github.com/your-username/remote-job-search-app.git
-cd remote-job-search-app
+git clone https://github.com/your-username/remoote.git
+cd remoote
 ```
 
 2. Install the required dependencies using npm or yarn.
